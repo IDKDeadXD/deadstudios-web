@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dead Studios - Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Added Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-inter">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-black bg-opacity-50 backdrop-blur-md p-4 fixed w-full top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold hover:text-purple-400 transition-colors">Dead Studios</a>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-purple-400 transition-colors">Home</a></li>
+                <li><a href="projects.html" class="hover:text-purple-400 transition-colors font-semibold">Projects</a></li>
+                <li><a href="techs.html" class="hover:text-purple-400 transition-colors">Tech Stack</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Galaxy Background (applied via CSS to body) -->
+    <div id="stars-container" class="absolute inset-0 z-0"></div> <!-- For JS stars -->
+
+
+    <!-- Projects Section -->
+    <section class="min-h-screen pt-24 pb-12 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">My Projects</h2>
+
+            <!-- This div will be populated by JavaScript -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project cards will be injected here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-70 text-center p-6 mt-auto relative z-10">
+        <p class="text-gray-400">&copy; <span id="currentYear"></span> Dead Studios. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Define your projects data here
+        const Projects = [
+            {
+                Name: "Obsidian Essentials",
+                slug: "Obsidian-Essentials", // Used for placeholder image if icon fails
+                Techs: ["Javascript"],
+                Description: "A comprehensive Minecraft bedrock add-on used for Realms/Servers.",
+                Icon: "oe_banner.png" // Path relative to an 'assets' folder e.g., assets/obsidian_essentials_icon.png
+            },
+            {
+                Name: "CloudBot",
+                slug: "CloudBot",
+                Techs: ["Discord.js", "Node.js"],
+                Description: "CloudBot is your personal assistant for keeping information secure directly within Discord. It's designed to be a private, encrypted space where you can store text, files, images, and more, without worrying about prying eyes.",
+                Icon: "cloudbot.png"
+            },
+            {
+                Name: "MEEP",
+                slug: "MEEP",
+                Techs: ["Discord.js", "SQL", "Supabase"],
+                Description: "My first discord moderation bot used to help my personal server with polls, tickets, banning/muting, +more",
+                Icon: "meep.png"
+            }
+            // Add more project objects here
+        ];
+
+        const projectsGrid = document.getElementById('projectsGrid');
+
+        Projects.forEach(project => {
+            // Create tech tags HTML
+            let techsHtml = '';
+            if (project.Techs && project.Techs.length > 0) {
+                techsHtml = project.Techs.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+            }
+
+            // Construct the project card HTML
+            const projectCardHtml = `
+                <div class="project-card bg-gray-800 bg-opacity-70 backdrop-blur-sm p-6 rounded-lg shadow-xl hover-lift transition-all duration-300">
+                    <img src="assets/${project.Icon}" alt="Project ${project.Name}" class="rounded-md mb-4 w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/374151/E0E0E0?text=${encodeURIComponent(project.slug)}'; this.alt='${project.Name} Placeholder'">
+                    <h3 class="text-2xl font-semibold mb-2 text-purple-300">${project.Name}</h3>
+                    <p class="text-gray-400 mb-4 text-sm">${project.Description}</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${techsHtml}
+                    </div>
+                    <a href="#" class="text-purple-400 hover:text-purple-200 font-medium hover-arrow">View Project &rarr;</a>
+                </div>
+            `;
+            // Append the new card to the grid
+            projectsGrid.innerHTML += projectCardHtml;
+        });
+
+        // Dynamic year for footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Simple starfield for background
+        const starsContainer = document.getElementById('stars-container');
+        if (starsContainer) {
+            const numStars = 200;
+            for (let i = 0; i < numStars; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.setProperty('--star-x', Math.random() * 100 + 'vw');
+                star.style.setProperty('--star-y', Math.random() * 100 + 'vh');
+                star.style.setProperty('--star-size', Math.random() * 2 + 1 + 'px');
+                star.style.setProperty('--star-duration', (Math.random() * 2 + 2) + 's');
+                star.style.setProperty('--star-delay', Math.random() * 2 + 's');
+                starsContainer.appendChild(star);
+            }
+        }
+    </script>
+</body>
+</html>
