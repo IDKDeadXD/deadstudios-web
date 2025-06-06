@@ -78,9 +78,9 @@ nav a.font-semibold::after {
 }
 
 
-/* Hero Section Card (index.html) */
+/* Hero Section Card (/) */
 /* Targets .bg-gray-800.bg-opacity-70.backdrop-blur-sm - make more specific if needed */
-.hero-card { /* Add this class to your main card div in index.html */
+.hero-card { /* Add this class to your main card div in / */
     background: linear-gradient(145deg, rgba(25, 25, 50, 0.75), rgba(45, 35, 70, 0.85)); /* Darker, richer gradient */
     backdrop-filter: blur(10px); /* Enhanced blur */
     border: 1px solid rgba(192, 132, 252, 0.25);
@@ -121,7 +121,7 @@ header .container h1 span.text-purple-400 {
 }
 
 
-/* Project Card Styling (projects.html) */
+/* Project Card Styling (projects) */
 .project-card {
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     border: 1px solid rgba(192, 132, 252, 0.15); /* More subtle border */
@@ -169,7 +169,7 @@ a.hover-arrow:hover::after {
 }
 
 
-/* Tech Card Styling (techs.html) */
+/* Tech Card Styling (techs) */
 .tech-card {
     border: 1px solid rgba(192, 132, 252, 0.25);
     background: rgba(31, 41, 55, 0.6); /* Consistent with project cards */
